@@ -160,17 +160,23 @@ public class Bot : MonoBehaviour {
         coolDown = false;
     }
 
+    bool TargetInRange()
+    {
+        if (Vector3.Distance(this.transform.position, target.transform.position) < 10)
+            return true;
+        return false;
+    }
+
+
     void Update() {
 
-        // Seek(target.transform.position);
-        // Flee(target.transform.position);
-        // Pursue();
-        // Evade();
-        // Wander();
-        // Hide();
         if (!coolDown) {
-
-            if (CanSeeTarget() && CanSeeMe()) {
+            
+            if (!TargetInRange())
+            {
+                Wander();
+            }
+            else if (CanSeeTarget() && CanSeeMe()) {
 
                 CleverHide();
                 coolDown = true;
