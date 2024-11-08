@@ -2,20 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public sealed class World
-{
-   private static readonly World instance = new World();
-   private static GameObject[] hidingSpots;
+public sealed class World {
 
-   static World() { }
+    static readonly World instance = new World();
+    static GameObject[] hidingSpots;
 
-   public static World Instance
-   {
-    get { return instance; }
-   }
+    static World() {
 
-   public GameObject[] GetHidingSpots()
-   {
-    return hidingSpots;
-   }
+        hidingSpots = GameObject.FindGameObjectsWithTag("hide");
+    }
+
+    World() { }
+
+
+    public static World Instance { get { return instance; } }
+    public GameObject[] GetHidingSpots() { return hidingSpots; }
 }
